@@ -3,7 +3,8 @@ const app = express();
 const morgan = require('morgan');
 const cors = require('cors');
 const { mongoess } = require('./Config/database');
-const path = require('path')
+const path = require('path');
+const fileupload = require('express-fileupload');
 
 //settings
 app.set('port' , process.env.PORT || 3000);
@@ -14,6 +15,7 @@ app.use(morgan('dev'));
 app.use(cors(
 	{origin:'*'}
 ));
+app.use(fileupload());
 
 //routes
 app.use("/user" , require("./Routes/user-route"));
