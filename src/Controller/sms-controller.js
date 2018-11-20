@@ -22,7 +22,7 @@ _SMS.setSms = async (req, res) => {
         creation_date: day
     });
     await sms.save((err) => {
-        if (err) return res.status(400).json({
+        if (err) return res.status(500).json({
             status: "err",
             smj: err
         });
@@ -45,7 +45,7 @@ _SMS.getSmss = async (req, res) => {
         "creation_date": 1
     }).populate({ path: "calls", select: "phone" })
         .exec((err, smss) => {
-            if (err) return res.status(400).json({
+            if (err) return res.status(500).json({
                 status: "err",
                 smj: err
             });
@@ -70,7 +70,7 @@ _SMS.getSms = async (req, res) => {
         "creation_date": 1
     }).populate({ path: "calls", select: "phone" })
         .exec((err, smss) => {
-            if (err) return res.status(400).json({
+            if (err) return res.status(500).json({
                 status: "err",
                 smj: err
             });
@@ -85,7 +85,7 @@ _SMS.getSms = async (req, res) => {
 _SMS.removeSms = async (req, res) => {
     const { id } = req.params;
     await _SMSMDL.findByIdAndRemove(id, (err) => {
-        if (err) return res.status(400).json({
+        if (err) return res.status(500).json({
             status: "err",
             smj: err
         });
